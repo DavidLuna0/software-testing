@@ -1,0 +1,59 @@
+
+	Quando não tivermos os Id's dos elementos a nossa disposição é necessario utilizar o xpath = linguagem de consulta usada para
+	selecionar nós de documentos
+	
+	formas pra conseguir pegar o xpath:
+		(Todos os abaixo são plugins do firefox)
+		* selenium IDE
+		* Firebug
+		* FirePath
+		
+		Os xpaths gerados dessa forma são mt presos à estrutura do documento
+		deve-se tentar distanciar o xpath da estrutura do documento
+		
+		O mais recomendado é você mesmo criar os xpath que precisa
+		
+		-------------------------------------------------------------------------------
+		
+		Xpath dividido em duas formas
+			*xpath absoluto - forma absoluta de se chegar ao aeroporto - se tem alteração no caminho aumenta a probabilidade de se
+			dar manutenção no caminho
+			*xpath relativo - como se alguem lhe perguntasse o caminho para chegar onde deseja - se tem alteração no caminho a probabilidade
+			de dar manutenção é menor
+			pegar um elemento proximo ao que se quer referenciar e a partir dele chegar ao elemento desejado
+			
+		-------------------------------------------------------------------------------
+		
+		Para cria-lo usa-se as tags como se fossem um caminho para um arquivo
+		ex: html/body/center/form/h3
+		
+		ou //h3: varre todo o documento procurando pela primeira instancia da tag passada
+		se não tem nada antes das barras ele procura do inicio do documento
+		
+		criar xpath com id: //input*[@id='buttonSimple']
+		
+		outra forma:
+		.//input[@value='Abrir Popup']
+		
+		outra forma:
+		.//input[@type='button'][3]
+		
+		referenciar radio feminino:
+		.//[@name = 'elementosForm:sexo' adn @value = 'F']
+		
+		referenciar radio feminino pelo nome mostrado na pagina:
+		.//label[. = 'Feminino']
+		
+		ou
+		
+		.//*[contains(., "Feminino")] =  pega tudo da pagina
+		
+		para pegar o radio com base no label:
+		.//label[. = 'Feminino']/.. - quando se usa o .. sobe um nivel hierarquico
+		.//label[. = 'Feminino']/../input - e agora a partir desse nivel vai até o input
+		
+		------------------------------
+		
+		
+		 
+		
