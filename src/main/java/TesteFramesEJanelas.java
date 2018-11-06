@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 
 public class TesteFramesEJanelas {
@@ -16,7 +16,7 @@ public class TesteFramesEJanelas {
 
 	@Before
 	public void inicializa(){
-		driver = new ChromeDriver();
+		driver = new FirefoxDriver();
 		driver.manage().window().setSize(new Dimension(1200, 765));
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		dsl = new DSL(driver);
@@ -39,6 +39,16 @@ public class TesteFramesEJanelas {
 	}
 	
 	@Test
+	public void deveInteragirComFrameEscondido(){
+		WebElement frame = driver.findElement(By.id("frame2"));
+		dsl.executarJS("window.scrollBy(0, arguments[0])", frame.getLocation().y);
+		dsl.entrarFrame("frame2");
+		dsl.clicarBotao("frameButton");
+		String msg = dsl.alertaObterTextoEAceita();
+		Assert.assertEquals("Frame OK!", msg);
+	}
+	
+	@Test
 	public void deveInteragirComJanelas(){
 		dsl.clicarBotao("buttonPopUpEasy");
 		dsl.trocarJanela("Popup");
@@ -57,19 +67,5 @@ public class TesteFramesEJanelas {
 		dsl.escrever(By.tagName("textarea"), "Deu certo?");
 		dsl.trocarJanela((String) driver.getWindowHandles().toArray()[0]);
 		dsl.escrever(By.tagName("textarea"), "e agora?");
-	}
-	
-	@Test
-	public void frameEscondidoTest () {
-		WebElement frame = driver.findElement(By.id("frame2"));
-		dsl.executarJs("window.scrollBy(0,arguments[0])", frame.getLocation().y);
-		dsl.entrarFrame("frame2");
-		// para não precisar ficar se preocupando com os detalhes das coordenadas do scroll, passa-se parametros
-		dsl.clicarBotao("frameButton");
-		String msg = dsl.alertaObterTextoEAceita();
-		Assert.assertEquals("Frame OK!", msg);
-		
-		//não passa pois ocorre um problema desconhecido com o selenium pois ele não encontra o elemento para clicar
-		//para passar é necessario dar um scroll na tela para o botao aparecer na tela
 	}
 }

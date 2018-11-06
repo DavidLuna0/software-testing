@@ -4,7 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class TesteGoogle {
 	
@@ -12,7 +12,7 @@ public class TesteGoogle {
 
 	@Before
 	public void inicializa(){
-		driver = new ChromeDriver();
+		driver = new FirefoxDriver();
 		driver.manage().window().setSize(new Dimension(1200, 765));
 	}
 	

@@ -5,7 +5,6 @@ public class CampoTreinamentoPage {
 	
 	private DSL dsl;
 	
-	// cria classe para gerenciar os testes
 	public CampoTreinamentoPage(WebDriver driver) {
 		dsl = new DSL(driver);
 	}
@@ -54,6 +53,7 @@ public class CampoTreinamentoPage {
 	public String obterResultadoCadastro(){
 		return dsl.obterTexto(By.xpath("//*[@id='resultado']/span"));
 	}
+	
 	
 	public String obterNomeCadastro(){
 		return dsl.obterTexto(By.xpath("//*[@id='descNome']/span"));

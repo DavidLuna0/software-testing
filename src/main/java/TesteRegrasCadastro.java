@@ -12,7 +12,7 @@ import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 @RunWith(Parameterized.class)
 public class TesteRegrasCadastro {
@@ -37,7 +37,7 @@ public class TesteRegrasCadastro {
 
 	@Before
 	public void inicializa(){
-		driver = new ChromeDriver();
+		driver = new FirefoxDriver();
 		driver.manage().window().setSize(new Dimension(1200, 765));
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		dsl = new DSL(driver);
@@ -53,10 +53,10 @@ public class TesteRegrasCadastro {
 	public static Collection<Object[]> getCollection(){
 		return Arrays.asList(new Object[][] {
 			{"", "", "", Arrays.asList(), new String[]{}, "Nome eh obrigatorio"},
-			{"David", "", "", Arrays.asList(), new String[]{}, "Sobrenome eh obrigatorio"},
-			{"David", "Luna", "", Arrays.asList(), new String[]{}, "Sexo eh obrigatorio"},
-			{"David", "Luna", "Masculino", Arrays.asList("Carne", "Vegetariano"), new String[]{}, "Tem certeza que voce eh vegetariano?"},
-			{"David", "Luna", "Masculino", Arrays.asList("Carne"), new String[]{"Karate", "O que eh esporte?"}, "Voce faz esporte ou nao?"}
+			{"Wagner", "", "", Arrays.asList(), new String[]{}, "Sobrenome eh obrigatorio"},
+			{"Wagner", "Costa", "", Arrays.asList(), new String[]{}, "Sexo eh obrigatorio"},
+			{"Wagner", "Costa", "Masculino", Arrays.asList("Carne", "Vegetariano"), new String[]{}, "Tem certeza que voce eh vegetariano?"},
+			{"Wagner", "Costa", "Masculino", Arrays.asList("Carne"), new String[]{"Karate", "O que eh esporte?"}, "Voce faz esporte ou nao?"}
 		});
 	}
 	

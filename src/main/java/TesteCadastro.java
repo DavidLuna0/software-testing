@@ -4,7 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class TesteCadastro {
 	
@@ -13,7 +13,7 @@ public class TesteCadastro {
 
 	@Before
 	public void inicializa(){
-		driver = new ChromeDriver();
+		driver = new FirefoxDriver();
 		driver.manage().window().setSize(new Dimension(1200, 765));
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		page = new CampoTreinamentoPage(driver);
@@ -26,8 +26,8 @@ public class TesteCadastro {
 
 	@Test
 	public void deveRealizarCadastroComSucesso(){
-		page.setNome("David");
-		page.setSobrenome("Luna");
+		page.setNome("Wagner");
+		page.setSobrenome("Costa");
 		page.setSexoMasculino();
 		page.setComidaPizza();
 		page.setEscolaridade("Mestrado");
@@ -35,8 +35,8 @@ public class TesteCadastro {
 		page.cadastrar();
 		
 		Assert.assertEquals("Cadastrado!", page.obterResultadoCadastro());
-		Assert.assertEquals("David", page.obterNomeCadastro());
-		Assert.assertEquals("Luna", page.obterSobrenomeCadastro());
+		Assert.assertEquals("Wagner", page.obterNomeCadastro());
+		Assert.assertEquals("Costa", page.obterSobrenomeCadastro());
 		Assert.assertEquals("Masculino", page.obterSexoCadastro());
 		Assert.assertEquals("Pizza", page.obterComidaCadastro());
 		Assert.assertEquals("mestrado", page.obterEscolaridadeCadastro());
